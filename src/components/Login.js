@@ -1,28 +1,44 @@
-import React from 'react';
+import React from 'react'
+import { Avatar, Button, Checkbox, FormControlLabel, Grid, Link, Paper, TextField, Typography } from '@mui/material';
+import { LockOutlined } from '@mui/icons-material';
 
-function Login() {
-return(
-    <div className='d-flex justify-content-center align-items-center bg-black vh-100'>
-      <div className='bg-white p-3 rounded w-35'>
-        <form action ="">
-            <div className='mb-3' >
-            <label htmlFor='email'>Email</label>
-                <input type='email' placeholder='Enter Email'/>
-             
-            </div>
-            <div className='mb-3' >
-                <label htmlFor='password'>Password</label>
-                <input type='password' placeholder='Enter Password'/>
-            </div>
-            <center>
-            <button className='btn btn-success' >Login </button>
-            </center>
-            <p>You agree to our terms and conditions</p>
-            <button className='btn btn-default border'>Create Account</button>
-        </form>
-      </div>
-    </div>
-)
+const Login=()=>{
+
+    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
+    const avatarStyle={backgroundColor:'#1bbd7e'}
+    const btnstyle={margin:'8px 0'}
+    return(
+        <Grid>
+            <Paper elevation={10} style={paperStyle}>
+                <Grid align='center'>
+                     <Avatar style={avatarStyle}><LockOutlined/></Avatar>
+                    <h2>Sign In</h2>
+                </Grid>
+                <TextField label='Email' placeholder='Enter email' type='email' fullWidth required/>
+                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
+                <FormControlLabel
+                    control={
+                    <Checkbox
+                        name="checkedB"
+                        color="primary"
+                    />
+                    }
+                    label="Remember me"
+                 />
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
+                <Typography >
+                     <Link href="#" >
+                        Forgot password ?
+                </Link>
+                </Typography>
+                <Typography > Do you have an account ?
+                     <Link href="#" >
+                        Sign Up 
+                </Link>
+                </Typography>
+            </Paper>
+        </Grid>
+    )
 }
 
 export default Login
