@@ -8,10 +8,12 @@ const Landingpg = () => {
       <Grid
         container
         height={"450px"}
+        width={"100%"}
         sx={{
           backgroundImage: `url("https://i.ibb.co/vdQPQdm/image.png")`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "100% 450px",
+          flexWrap:"nowrap"
         }}
       >
         <Box width={"600px"} height={"450px"} marginLeft={30}>
@@ -34,7 +36,7 @@ const Landingpg = () => {
             donation process as easy and convenient as possible.
           </Typography>
         </Box>
-        <Box width={"55.8%"} >
+        <Box width={"55.8%"}>
         <Link to = "/login">
         <Button variant="outlined" sx={{width:"200  px",height:"50px",borderRadius:20,backgroundColor:"red",marginTop:"350px",marginLeft:"50px",color:"black",borderWidth:"1px",}}> 
           Login/Sign up 
