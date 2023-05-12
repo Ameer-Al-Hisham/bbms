@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Box, Typography, Container } from "@mui/material";
+import { Grid, Box, Typography } from "@mui/material";
 
 const Landingpg = () => {
   return (
