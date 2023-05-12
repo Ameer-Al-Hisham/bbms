@@ -35,7 +35,7 @@ const Landingpg = () => {
           </Typography>
         </Box>
         <Box width={"55.8%"} >
-        <Link to = "/add">
+        <Link to = "/login">
         <Button variant="outlined" sx={{width:"200  px",height:"50px",borderRadius:20,backgroundColor:"red",marginTop:"350px",marginLeft:"50px",color:"black",borderWidth:"1px",}}> 
           Login/Sign up 
         </Button>
