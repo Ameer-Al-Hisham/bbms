@@ -5,12 +5,12 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
-  Link,
   Paper,
   TextField,
   Typography,
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const paperStyle = {
@@ -62,7 +62,7 @@ const Login = () => {
         </Typography>
         <Typography>
           {" "}
-          Do you have an account ?<Link href="#">Sign Up</Link>
+          Do you have an account ?<Link to="/signup">Sign Up</Link>
         </Typography>
       </Paper>
     </Grid>
