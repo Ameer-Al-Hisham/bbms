@@ -30,7 +30,16 @@ var requestSchema = new schema({
     Type : String,
 }) ;
 
+var loginSchema = new schema({
+    Name : String,
+    Email : String,
+    Phone : String,
+    Password : String
+}) ;
+
+
 var donorInfo = mongoose.model("Donor",donorSchema);
 var receiverInfo = mongoose.model("Receiver",receiverSchema);
 var requestInfo = mongoose.model("Requests", requestSchema);
-module.exports = {donorInfo,receiverInfo,requestInfo};
+var loginInfo = mongoose.model("LoginInfo",loginSchema)
+module.exports = {donorInfo,receiverInfo,requestInfo,loginInfo};
