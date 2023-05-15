@@ -12,7 +12,7 @@ const Login=()=>{
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
                      <Avatar style={avatarStyle}><LockOutlined/></Avatar>
-                    <h2>Sign In</h2>
+                   <Typography variant='h4' gutterBottom color='#880e4f' sx={{ textDecoration: 'underline' }}>Sign In</Typography>
                 </Grid>
                 <TextField label='Email' placeholder='Enter email' type='email' fullWidth required/>
                 <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
