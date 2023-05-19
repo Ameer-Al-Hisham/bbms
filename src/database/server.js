@@ -16,7 +16,7 @@ app.get("/",(req,res)=>{
 app.post("/create/donor", (req,res)=>{
     var data = new infof.donorInfo(req.body)
     data.save();
-    res.send("user updated")
+    res.send("donor created")
 });
 
 app.post("/create/receiver", (req,res)=>{
@@ -43,5 +43,5 @@ app.get("/view/donor",async (req,res)=>{
 });
 //Setting port number
 app.listen(5555, ()=>{
-    console.log("Server is running in port 5000")
+    console.log("Server is running in port 5555")
 });

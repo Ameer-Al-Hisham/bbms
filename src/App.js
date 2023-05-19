@@ -2,18 +2,21 @@ import Home from './components/Home';
 import Login from'./components/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Requestform from './components/Requestform';
-import Userview from './components/Userview';
 import Signup from './components/Signup';
+import UserView from './components/UserView';
+import DonorForm from './components/DonorForm';
+import RequestForm from './components/RequestForm';
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Userview />
+        <UserView />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/form" element={<Requestform />}></Route>
+          <Route path="/form/donor" element={<DonorForm />}></Route>
+          <Route path="/form/request" element={<RequestForm />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
         </Routes>
       </BrowserRouter>

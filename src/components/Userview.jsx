@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Userview = () => {
+const UserView = () => {
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -25,9 +25,12 @@ const Userview = () => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               WELCOME
             </Typography>
-            <Button color="inherit">
-              <Link to={"/form"}>Request Form</Link>
-            </Button>
+            <Link to={"/form/donor"}>
+              <Button color="inherit">Donate</Button>
+            </Link>
+            <Link to={"/form/request"}>
+              <Button color="inherit">Request</Button>
+            </Link>
             <Button color="inherit">Logout</Button>
           </Toolbar>
         </AppBar>
@@ -36,4 +39,4 @@ const Userview = () => {
   );
 };
 
-export default Userview;
+export default UserView;

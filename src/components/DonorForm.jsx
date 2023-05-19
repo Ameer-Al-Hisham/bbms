@@ -10,15 +10,13 @@ import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
-const RequestForm = () => {
+const DonorForm = () => {
   const { register, handleSubmit } = useForm();
 
   async function addRequest(data) {
-    await axios
-      .post("http://localhost:5555/create/request", data)
-      .then((res) => {
-        alert(res.data);
-      });
+    await axios.post("http://localhost:5555/create/donor", data).then((res) => {
+      alert(res.data);
+    });
   }
 
   return (
@@ -42,7 +40,7 @@ const RequestForm = () => {
             color="black"
             gutterBottom
           >
-            Request Form
+            Donor Form
           </Typography>
           <TextField
             required
@@ -95,16 +93,6 @@ const RequestForm = () => {
             sx={{ marginLeft: 35, marginTop: -3 }}
             {...register("ailments")}
           />
-          <Typography sx={{ marginLeft: -21, marginTop: 4 }}>
-            No: of units of blood required, if receiver:
-          </Typography>
-          <TextField
-            sx={{ marginLeft: 46, marginTop: -5 }}
-            variant="standard"
-            label="Units of Blood"
-            size="small"
-            {...register("quantity")}
-          />
         </CardContent>
         <CardActions>
           <Button
@@ -120,4 +108,4 @@ const RequestForm = () => {
   );
 };
 
-export default RequestForm;
+export default DonorForm;
