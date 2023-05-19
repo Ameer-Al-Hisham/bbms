@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import {
-  Box,
   Button,
   FormControl,
   FormControlLabel,
@@ -11,14 +10,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
-  const [value, setValue] = useState(null);
-
   const paperStyle = {
     padding: 60,
     height: "",
@@ -26,6 +21,16 @@ const Signup = () => {
     margin: "20px auto",
   };
   const btnstyle = { margin: "8px 0" };
+
+  const { register, handleSubmit } = useForm();
+
+  async function addUser(data) {
+    await axios
+      .post("http://localhost:5555/create/signup", data)
+      .then((res) => {
+        alert(res.data);
+      });
+  }
 
   return (
     <Grid>
@@ -44,6 +49,7 @@ const Signup = () => {
           <Typography align="left">Enter Full Name</Typography>
           <TextField
             placeholder="Enter full name"
+            {...register("name")}
             type="text"
             fullWidth
             required
@@ -52,6 +58,7 @@ const Signup = () => {
         <p>
           <Typography align="left">Enter Email-id</Typography>
           <TextField
+            {...register("email")}
             placeholder="Enter email"
             type="email"
             fullWidth
@@ -59,16 +66,14 @@ const Signup = () => {
           />
         </p>
         <p>
-          <Typography align="left">Enter Date of Birth</Typography>
-          <Box>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
-                value={value}
-                onChange={(newValue) => setValue(newValue)}
-                renderInput={(props) => <TextField {...props} />}
-              />
-            </LocalizationProvider>
-          </Box>
+          <Typography align="left">Enter Phone Number</Typography>
+          <TextField
+            placeholder="Enter phone number"
+            {...register("phone")}
+            type="text"
+            fullWidth
+            required
+          />
         </p>
 
         <p>
@@ -97,6 +102,7 @@ const Signup = () => {
           <Typography align="left">Set Password</Typography>
           <TextField
             placeholder="Enter password"
+            {...register("password")}
             type="password"
             fullWidth
             required
@@ -114,21 +120,16 @@ const Signup = () => {
             required
           />{" "}
         </p>
-        <p>
-          <h6>
-            By clicking Sign Up, you agree to our Terms, Privacy Policy. You may
-            receive SMS notifications from us and can opt out at any time.
-          </h6>
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            style={btnstyle}
-            fullWidth
-          >
-            Sign Up
-          </Button>
-        </p>
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          style={btnstyle}
+          fullWidth
+          onClick={handleSubmit(addUser)}
+        >
+          Sign Up
+        </Button>
 
         <Typography>
           {" "}
