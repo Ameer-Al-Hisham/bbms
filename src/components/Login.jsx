@@ -2,8 +2,6 @@ import React from "react";
 import {
   Avatar,
   Button,
-  Checkbox,
-  FormControlLabel,
   Grid,
   Paper,
   TextField,
@@ -51,10 +49,6 @@ const Login = () => {
           fullWidth
           required
         />
-        <FormControlLabel
-          control={<Checkbox name="checkedB" color="primary" />}
-          label="Remember me"
-        />
         <Button
           type="submit"
           color="primary"
@@ -65,14 +59,13 @@ const Login = () => {
           Sign in
         </Button>
         <Typography>
-          <Link href="#">Forgot password ?</Link>
-        </Typography>
-        <Typography>
           {" "}
           Don't have an account ?
-          <Button variant="contained" color="success">
-            <Link to="/signup">Create Account</Link>
-          </Button>
+          <Link to="/signup">
+            <Button variant="contained" color="success">
+              Create Account
+            </Button>
+          </Link>
         </Typography>
       </Paper>
     </Grid>
