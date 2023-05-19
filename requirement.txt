@@ -31,9 +31,9 @@ USER VIEW
 		6.Request Category (Dropdown)
 			1.Donor
 			2.Receiver
-        7.Pre defined ailments, if any
-        8.No: of units of blood required, if receiver
-    4.Logout Button to logout of the system.
+                7.Pre defined ailments, if any
+                8.No: of units of blood required, if receiver
+        4.Logout Button to logout of the system.
  
 ADMIN VIEW
 
