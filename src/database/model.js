@@ -4,37 +4,37 @@ mongoose.connect("mongodb+srv://Ameer_Al_Hisham:simplepass@cluster0.iaopnwq.mong
 //schema
 const schema = mongoose.Schema;
 var donorSchema = new schema({
-    Name : String,
-    Age : Number,
-    Email : String,
-    Phone : String,
-    BloodType : String,
+    name : String,
+    age : Number,
+    email : String,
+    phone : String,
+    bloodType : String,
 }) ;
 
 var receiverSchema = new schema({
-    Name : String,
-    Age : Number,
-    Email : String,
-    Phone : String,
-    BloodType : String,
-    Quantity : Number
+    name : String,
+    age : Number,
+    email : String,
+    phone : String,
+    bloodType : String,
+    quantity : Number
 }) ;
 
 var requestSchema = new schema({
-    Name : String,
-    Age : Number,
-    Email : String,
-    Phone : String,
-    BloodType : String,
-    Quantity : Number,
-    Type : String,
+    name : String,
+    age : Number,
+    email : String,
+    phone : String,
+    bloodType : String,
+    quantity : Number,
+    type : String,
 }) ;
 
 var loginSchema = new schema({
-    Name : String,
-    Email : String,
-    Phone : String,
-    Password : String
+    name : String,
+    email : String,
+    phone : String,
+    password : String
 }) ;
 
 
