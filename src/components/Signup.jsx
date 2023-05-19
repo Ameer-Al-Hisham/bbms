@@ -5,7 +5,6 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
-  Link,
   Paper,
   Radio,
   RadioGroup,
@@ -15,6 +14,7 @@ import {
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [value, setValue] = useState(null);
@@ -132,7 +132,7 @@ const Signup = () => {
 
         <Typography>
           {" "}
-          Already have an account ?<Link href="#">Login</Link>
+          Already have an account ?<Link to="/login">Login</Link>
         </Typography>
       </Paper>
     </Grid>
