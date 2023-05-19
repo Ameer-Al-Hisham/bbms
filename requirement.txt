@@ -1,7 +1,9 @@
 Blood Bank Management System
 Overview: Develop a blood bank management website for managing the blood donors and handling requests for blood donation.
- 
+
+
 Requirements:
+
 	1.Pages Required:
 		1.Login
 		2.SignUp
@@ -17,6 +19,7 @@ Requirements:
 		2.No signup page for Admin User. His/her credentials must be predefined.
 		3.Upon successful login, you must be redirected to Donor Dashboard.
  
+
 USER VIEW
  
 4.Donor Dashboard
@@ -31,21 +34,21 @@ USER VIEW
 		6.Request Category (Dropdown)
 			1.Donor
 			2.Receiver
-                           6.Pre defined ailments, if any
-                           7. No: of units of blood required, if receiver
-        4.  Logout Button to logout of the system.
- 
+		7.Pre defined ailments, if any
+		8.No: of units of blood required, if receiver
+	4.Logout Button to logout of the system.
+
 ADMIN VIEW
 
 5.Admin Dashboard must list the donors available in the system with option to delete or update the donors.
-6.Admin must also be able to add donors to the blood bank.
-7.The donor addition form must have following fields:
-	1.Name
-	2.Age
-	3.Email ID
-	4.Phone number
-	5.Blood type
-	6.Pre defined ailments, if any
-8.Admin must be able to view all the blood donation request with option to approve or reject the request.
-9.Once the admin approves or rejects the request, the user must get a notification on the dashboard or email about the request status.
-10.Logout button also should be available for admin side.
+	1.Admin must also be able to add donors to the blood bank.
+	2.The donor addition form must have following fields:
+		1.Name
+		2.Age
+		3.Email ID
+		4.Phone number
+		5.Blood type
+		6.Pre defined ailments, if any
+	3.Admin must be able to view all the blood donation request with option to approve or reject the request.
+	4.Once the admin approves or rejects the request, the user must get a notification on the dashboard or email about the request status.
+	5.Logout button also should be available for admin side.
