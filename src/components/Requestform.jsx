@@ -9,8 +9,11 @@ import {
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const RequestForm = () => {
+  let navigate = useNavigate();
+
   const { register, handleSubmit } = useForm();
 
   async function addRequest(data) {
@@ -115,6 +118,7 @@ const RequestForm = () => {
             Submit
           </Button>
         </CardActions>
+        <Button onClick={() => navigate(-1)}>Back</Button>
       </Card>
     </div>
   );

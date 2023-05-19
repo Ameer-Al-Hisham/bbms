@@ -9,6 +9,7 @@ import {
 import React from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const DonorForm = () => {
   const { register, handleSubmit } = useForm();
@@ -18,6 +19,8 @@ const DonorForm = () => {
       alert(res.data);
     });
   }
+
+  let navigate = useNavigate();
 
   return (
     <div>
@@ -103,6 +106,7 @@ const DonorForm = () => {
             Submit
           </Button>
         </CardActions>
+        <Button onClick={() => navigate(-1)}>Back</Button>
       </Card>
     </div>
   );
