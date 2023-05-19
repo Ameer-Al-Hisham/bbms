@@ -3,45 +3,45 @@ const cors = require("cors");
 const infof = require("./model");
 
 // Express init
-const app = new express;
+const app = new express();
 app.use(express.json());
-app.use(express.urlencoded({extended : true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
-app.get("/",(req,res)=>{
-    res.send("hi")
-})
-
-app.post("/create/donor", (req,res)=>{
-    var data = new infof.donorInfo(req.body)
-    data.save();
-    res.send("donor created")
+app.get("/", (req, res) => {
+  res.send("hi");
 });
 
-app.post("/create/receiver", (req,res)=>{
-    var data = new infof.receiverInfo(req.body)
-    data.save();
-    res.send("user updated")
+app.post("/create/donor", (req, res) => {
+  var data = new infof.donorInfo(req.body);
+  data.save();
+  res.send("donor created");
 });
 
-app.post("/create/request", (req,res)=>{
-    var data = new infof.requestInfo(req.body)
-    data.save();
-    res.send("Request Submitted")
+app.post("/create/receiver", (req, res) => {
+  var data = new infof.receiverInfo(req.body);
+  data.save();
+  res.send("user updated");
 });
 
-app.post("/create/signup", (req,res)=>{
-    var data = new infof.loginInfo(req.body)
-    data.save();
-    res.send("Signup Successful")
+app.post("/create/request", (req, res) => {
+  var data = new infof.requestInfo(req.body);
+  data.save();
+  res.send("Request Submitted");
 });
 
-app.get("/view/donor",async (req,res)=>{
-    var result = await infof.donorInfo.find()
-    res.send(result);
+app.post("/create/signup", (req, res) => {
+  var data = new infof.loginInfo(req.body);
+  data.save();
+  res.send("Signup Successful");
+});
+
+app.get("/view/donor", async (req, res) => {
+  var result = await infof.donorInfo.find();
+  res.send(result);
 });
 //Setting port number
-app.listen(5555, ()=>{
-    console.log("Server is running in port 5555")
+app.listen(5555, () => {
+  console.log("Server is running in port 5555");
 });
