@@ -11,6 +11,8 @@ import { LockOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Alert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 
 const Login = () => {
   const paperStyle = {
@@ -24,26 +26,51 @@ const Login = () => {
 
   const { register, handleSubmit } = useForm();
 
-  /*async function verifylogin(data)
+  var [open, setopen] = React.useState(false);
+  var [open1, setopen1] = React.useState(false);
+  var [open2, setopen2] = React.useState(false);
+
+  const close = () => {
+    setopen(false);
+    setopen1(false);
+    setopen2(false);
+  };
+
+  async function verifylogin(data)
   { 
+    if(data.email == "superuser@gmail.com" && data.password == "admin123")
+    {
+      alert("login successful")
+      window.location = "http://localhost:3000/adminview"
+    }
     await axios.get(`http://localhost:5555/view/user?mail=${data.email}`).then((res)=>{
       var result = res.data;
-      console.log(result)
+      var usermail = data.email;
+      var userpass = data.password;
       if(data.email === "" || data.password === "")
       {
-          alert("complete fields")
+          setopen(true);
       }
       else if(result === "NewUser")
       {
-          alert("newuser signup")
-          window.location = "http://localhost:3000/signup"
+          setopen1(true)
       }
       else
       {
-          
+        var fetchmail = result.email;
+        var fetchpass = result.password;
+        if (fetchmail == usermail && fetchpass == userpass)
+        {
+          alert("login successfull")
+          window.location = "http://localhost:3000/userview"
+        }
+        else
+        {
+          setopen2(true);
+        }
       }
   });
-  }*/
+  }
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -82,7 +109,7 @@ const Login = () => {
           variant="contained"
           style={btnstyle}
           fullWidth
-          onClick={handleSubmit()}    //pass function name inside the handlesubmit's paranthesis
+          onClick={handleSubmit(verifylogin)}    //pass function name inside the handlesubmit's paranthesis // uva uva enikkariyam
         >
           Sign in
         </Button>
@@ -95,6 +122,25 @@ const Login = () => {
             </Button>
           </Link>
         </Typography>
+
+        <Snackbar open={open} autoHideDuration={6000} onClose={close}>
+          <Alert severity="error" sx={{ width: "100%" }}>
+            Fill all fields to continue!!
+          </Alert>
+        </Snackbar>
+
+        <Snackbar open={open1} autoHideDuration={6000} onClose={close}>
+          <Alert severity="warning" sx={{ width: "100%" }}>
+            Looks like a new user. Signup to continue.
+          </Alert>
+        </Snackbar>
+
+        <Snackbar open={open2} autoHideDuration={6000} onClose={close}>
+          <Alert severity="error" sx={{ width: "100%" }}>
+            Incorrect Email or Password.Try again!!
+          </Alert>
+        </Snackbar>
+
       </Paper>
     </Grid>
   );

@@ -48,7 +48,7 @@ app.get("/view/user",async (req,res)=>{
   if (result == "")
       {res.send("NewUser")}
   else
-      {res.send("ExsistingUser")}
+      {res.send({email:objres[0].email,password:objres[0].password})}
 });
 //Setting port number
 app.listen(5555, ()=>{

@@ -124,13 +124,13 @@ const Signup = () => {
         </Typography>
 
         <Snackbar open={open} autoHideDuration={6000} onClose={close}>
-          <Alert severity="success" sx={{ width: "100%" }}>
-            This mail is already registered!!
+          <Alert severity="warning" sx={{ width: "100%" }}>
+            This mail is already registered!!Login in to continue.
           </Alert>
         </Snackbar>
 
         <Snackbar open={open1} autoHideDuration={6000} onClose={close}>
-          <Alert severity="success" sx={{ width: "100%" }}>
+          <Alert severity="error" sx={{ width: "100%" }}>
             Fill all fields to continue!!
           </Alert>
         </Snackbar>
