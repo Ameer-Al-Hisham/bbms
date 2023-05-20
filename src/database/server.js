@@ -41,7 +41,12 @@ app.get("/view/donor", async (req, res) => {
   var result = await infof.donorInfo.find();
   res.send(result);
 });
+
+app.get("/view/user",async(req,res)=>{
+    var result = await infof.loginInfo.find({email:req.query.mail})
+    console.log(result[0].email)
+});
 //Setting port number
-app.listen(5555, () => {
-  console.log("Server is running in port 5555");
+app.listen(5555, ()=>{
+    console.log("Server is running in port 5000");
 });

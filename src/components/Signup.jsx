@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { insertuser } from "./unifun";
 
 const Signup = () => {
   const paperStyle = {
@@ -13,15 +13,6 @@ const Signup = () => {
   const btnstyle = { margin: "8px 0" };
 
   const { register, handleSubmit } = useForm();
-
-  async function addUser(data) {
-    await axios
-      .post("http://localhost:5555/create/signup", data)
-      .then((res) => {
-        alert(res.data);
-      });
-  }
-
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
@@ -82,7 +73,7 @@ const Signup = () => {
           variant="contained"
           style={btnstyle}
           fullWidth
-          onClick={handleSubmit(addUser)}
+          onClick={handleSubmit(insertuser)}
         >
           Sign Up
         </Button>

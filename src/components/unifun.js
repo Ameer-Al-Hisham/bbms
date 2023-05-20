@@ -24,4 +24,10 @@ async function getdonor()
     await axios.get('http://localhost:5555/view/donor').then((res)=>{console.log(res.data)})
 }
 
-export{insertrequest,insertdonor,insertreceiver,insertuser,getdonor}
+async function verifyuser(mail)
+{
+    await axios.get(`http://localhost:5555/view/user?mail=${mail}`).then((res)=>{console.log(res)})
+    
+}
+
+export{insertrequest,insertdonor,insertreceiver,insertuser,getdonor,verifyuser}

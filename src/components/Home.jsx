@@ -14,22 +14,22 @@ const Landingpg = () => {
     <div>
       <Grid
         container
-        height={"450px"}
+        height={"45%"}
         width={"100%"}
         sx={{
           backgroundImage: `url("https://i.ibb.co/vdQPQdm/image.png")`,
           backgroundRepeat: "no-repeat",
-          backgroundSize: "100% 450px",
+          backgroundSize: "100% 100%",
           flexWrap: "nowrap",
         }}
       >
-        <Box width={"600px"} height={"450px"} marginLeft={30}>
+        <Box width={"30%"} height={"100%"} marginLeft={"13%"}>
           <Typography
             variant="h1"
             fontSize={50}
             fontWeight={"Bolder"}
             textAlign={"start"}
-            paddingTop={10}
+            paddingTop={"10%"}
           >
             Save Lives with us
           </Typography>
@@ -43,12 +43,12 @@ const Landingpg = () => {
             donation process as easy and convenient as possible.
           </Typography>
         </Box>
-        <Box width={"55.8%"}>
+        <Box width={"57%"} height={"45%"} >
           <Link to="/login">
             <Button
               variant="outlined"
               sx={{
-                width: "200  px",
+                width: "150px",
                 height: "50px",
                 borderRadius: 20,
                 backgroundColor: "red",
@@ -75,7 +75,7 @@ const Landingpg = () => {
           <Card
             sx={{
               width: "23%",
-              height: "300px",
+              height: "%",
               marginLeft: "auto",
               marginRight: "auto",
               marginTop: "20px",
@@ -97,7 +97,7 @@ const Landingpg = () => {
           <Card
             sx={{
               width: "23%",
-              height: "300px",
+              height: "%",
               marginLeft: "auto",
               marginRight: "auto",
               marginTop: "20px",
@@ -119,7 +119,7 @@ const Landingpg = () => {
           <Card
             sx={{
               width: "23%",
-              height: "300px",
+              height: "%",
               marginLeft: "auto",
               marginRight: "auto",
               marginTop: "20px",
@@ -144,7 +144,7 @@ const Landingpg = () => {
           <Card
             sx={{
               width: "23%",
-              height: "300px",
+              height: "% ",
               marginLeft: "auto",
               marginRight: "auto",
               marginTop: "20px",
@@ -167,7 +167,7 @@ const Landingpg = () => {
           </Card>
         </Grid>
 
-        <Box sx={{ marginTop: "20px", marginLeft: 30 }}>
+        <Box sx={{ marginTop: "20px", marginLeft: "13%",width:"86%",height:"100%"}}>
           <Typography textAlign={"start"} variant="h6" fontSize={"28px"}>
             Eligibility Requirements:
           </Typography>
@@ -251,19 +251,10 @@ const Landingpg = () => {
             </li>
           </ul>
         </Box>
-        <hr style={{ borderWidth: "5px" }}></hr>
+        <hr style={{ borderWidth: "3px" }}></hr>
         <Box height={"300px"} width={"100%"}>
-          <Box
-            sx={{
-              backgroundImage: `url("https://i.ibb.co/txk3nn6/image.png")`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "100% 100%",
-              width: "200px",
-              height: "150px",
-              marginLeft: "45%",
-            }}
-          ></Box>
-          `
+
+          <img src="https://i.ibb.co/txk3nn6/image.png" alt = "" width={"10%"} height={"50%"}/>
           <Typography fontSize={"17px"} fontWeight={"bold"}>
             Some Blood Bank
           </Typography>
