@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { useForm } from "react-hook-form";
 
 const Login = () => {
   const paperStyle = {
@@ -19,6 +21,27 @@ const Login = () => {
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
+
+  /*async function verifylogin(data)
+  { 
+    await axios.get(`http://localhost:5555/view/user?mail=${data.email}`).then((res)=>{
+      var result = res.data;
+      console.log(result)
+      if(data.email === "" || data.password === "")
+      {
+          alert("complete fields")
+      }
+      else if(result === "NewUser")
+      {
+          alert("newuser signup")
+          window.location = "http://localhost:3000/signup"
+      }
+      else
+      {
+          
+      }
+  });
+  }*/
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>

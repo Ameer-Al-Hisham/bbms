@@ -42,9 +42,13 @@ app.get("/view/donor", async (req, res) => {
   res.send(result);
 });
 
-app.get("/view/user",async(req,res)=>{
-    var result = await infof.loginInfo.find({email:req.query.mail})
-    console.log(result[0].email)
+app.get("/view/user",async (req,res)=>{
+  var result = String(await infof.loginInfo.find({email:req.query.mail}));
+  var objres = await infof.loginInfo.find({email:req.query.mail});
+  if (result == "")
+      {res.send("NewUser")}
+  else
+      {res.send("ExsistingUser")}
 });
 //Setting port number
 app.listen(5555, ()=>{
