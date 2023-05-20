@@ -1,15 +1,5 @@
 import { useForm } from "react-hook-form";
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  Paper,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -45,21 +35,17 @@ const Signup = () => {
             Create Account
           </Typography>
         </Grid>
+        <Typography>All fields are required</Typography>
+        <br />
         <p>
           <Typography align="left">Enter Full Name</Typography>
-          <TextField
-            placeholder="Enter full name"
-            {...register("name")}
-            type="text"
-            fullWidth
-            required
-          />
+          <TextField {...register("name")} type="text" fullWidth required />
         </p>
         <p>
           <Typography align="left">Enter Email-id</Typography>
           <TextField
             {...register("email")}
-            placeholder="Enter email"
+            placeholder="abcd@xyz.com"
             type="email"
             fullWidth
             required
@@ -67,41 +53,12 @@ const Signup = () => {
         </p>
         <p>
           <Typography align="left">Enter Phone Number</Typography>
-          <TextField
-            placeholder="Enter phone number"
-            {...register("phone")}
-            type="text"
-            fullWidth
-            required
-          />
-        </p>
-
-        <p>
-          <Typography align="left">Select Gender</Typography>
-          <FormControl>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel
-                value="female"
-                control={<Radio />}
-                label="Female"
-              />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel
-                value="other"
-                control={<Radio />}
-                label="Other"
-              />
-            </RadioGroup>
-          </FormControl>
+          <TextField {...register("phone")} type="text" fullWidth required />
         </p>
 
         <p>
           <Typography align="left">Set Password</Typography>
           <TextField
-            placeholder="Enter password"
             {...register("password")}
             type="password"
             fullWidth
@@ -114,7 +71,6 @@ const Signup = () => {
           <TextField
             id="outlined-error-helper-text"
             helperText=""
-            placeholder="Re-Enter password"
             type="password"
             fullWidth
             required
