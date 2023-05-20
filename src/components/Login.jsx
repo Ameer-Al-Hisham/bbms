@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
@@ -21,6 +21,8 @@ const Login = () => {
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const btnstyle = { margin: "8px 0" };
+
+  const { register, handleSubmit } = useForm();
 
   /*async function verifylogin(data)
   { 
@@ -64,6 +66,7 @@ const Login = () => {
           type="email"
           fullWidth
           required
+          {...register("email")}
         />
         <TextField
           label="Password"
@@ -71,6 +74,7 @@ const Login = () => {
           type="password"
           fullWidth
           required
+          {...register("password")}
         />
         <Button
           type="submit"
@@ -78,6 +82,7 @@ const Login = () => {
           variant="contained"
           style={btnstyle}
           fullWidth
+          onClick={handleSubmit()}    //pass function name inside the handlesubmit's paranthesis
         >
           Sign in
         </Button>
