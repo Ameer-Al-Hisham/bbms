@@ -52,5 +52,5 @@ app.get("/view/user",async (req,res)=>{
 });
 //Setting port number
 app.listen(5555, ()=>{
-    console.log("Server is running in port 5000");
+    console.log("Server is running in port 5555");
 });

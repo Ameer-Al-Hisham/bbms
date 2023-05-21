@@ -43,7 +43,7 @@ const Landingpg = () => {
             donation process as easy and convenient as possible.
           </Typography>
         </Box>
-        <Box width={"57%"} height={"45%"} >
+        <Box width={"57%"} height={"45%"}>
           <Link to="/login">
             <Button
               variant="outlined"
@@ -167,7 +167,14 @@ const Landingpg = () => {
           </Card>
         </Grid>
 
-        <Box sx={{ marginTop: "20px", marginLeft: "13%",width:"86%",height:"100%"}}>
+        <Box
+          sx={{
+            marginTop: "20px",
+            marginLeft: "13%",
+            width: "86%",
+            height: "100%",
+          }}
+        >
           <Typography textAlign={"start"} variant="h6" fontSize={"28px"}>
             Eligibility Requirements:
           </Typography>
@@ -253,8 +260,12 @@ const Landingpg = () => {
         </Box>
         <hr style={{ borderWidth: "3px" }}></hr>
         <Box height={"300px"} width={"100%"}>
-
-          <img src="https://i.ibb.co/txk3nn6/image.png" alt = "" width={"10%"} height={"50%"}/>
+          <img
+            src="https://i.ibb.co/txk3nn6/image.png"
+            alt=""
+            width={"10%"}
+            height={"50%"}
+          />
           <Typography fontSize={"17px"} fontWeight={"bold"}>
             Some Blood Bank
           </Typography>
