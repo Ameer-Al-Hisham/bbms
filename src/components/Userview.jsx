@@ -11,22 +11,7 @@ import Snackbar from "@mui/material/Snackbar";
 import axios from 'axios';
 
 
-async function insertrequest(data)
-{
-    if(data.name === "" || data.age === "" || data.email === "" || data.phone === "" || data.bloodType === "" || data.requestType === "")
-    {
-          setopen1(true)
-    }
-    else
-    {
-    await axios.post('http://localhost:5555/create/request',data).then((res)=>{alert(res.data)});
-    }
-}
 
-var [open1, setopen1] = React.useState(false);
-const close1 = () => {
-  setopen1(false)
-};
 
 const UserView = () => {
   const { register, handleSubmit } = useForm();
@@ -44,6 +29,23 @@ const UserView = () => {
     value: 'Receive',
   },
 ];
+
+async function insertrequest(data)
+{
+    if(data.name === "" || data.age === "" || data.email === "" || data.phone === "" || data.bloodType === "" || data.requestType === "")
+    {
+          setopen1(true)
+    }
+    else
+    {
+    await axios.post('http://localhost:5555/create/request',data).then((res)=>{alert(res.data)});
+    }
+}
+
+var [open1, setopen1] = React.useState(false);
+const close1 = () => {
+  setopen1(false)
+};
 
 
   return (
