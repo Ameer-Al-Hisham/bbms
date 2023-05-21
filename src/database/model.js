@@ -20,6 +20,7 @@ var receiverSchema = new schema({
   email: String,
   phone: String,
   bloodType: String,
+  quantity: Number
 });
 
 var requestSchema = new schema({
@@ -30,6 +31,7 @@ var requestSchema = new schema({
   bloodType: String,
   ailments: String,
   quantity: Number,
+  requestType : String
 });
 
 var loginSchema = new schema({
