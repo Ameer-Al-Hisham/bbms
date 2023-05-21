@@ -12,6 +12,7 @@ var donorSchema = new schema({
   phone: String,
   bloodType: String,
   ailments: String,
+  status: String,
 });
 
 var receiverSchema = new schema({
@@ -20,7 +21,8 @@ var receiverSchema = new schema({
   email: String,
   phone: String,
   bloodType: String,
-  quantity: Number
+  quantity: Number,
+  status: String
 });
 
 var requestSchema = new schema({

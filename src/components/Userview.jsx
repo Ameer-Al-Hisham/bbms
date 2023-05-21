@@ -5,20 +5,29 @@ import {
   Box,
   AppBar,
   Toolbar,
-  IconButton,
   Dialog,
   DialogTitle,
   List,
   Container,
   ListItem,
+  Stack,
+  Card,
+  CardContent,
 } from "@mui/material";
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
+import {useForm } from "react-hook-form";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import axios from "axios";
+import {insertdonor, insertreceiver } from "./unifun";
 
 const UserView = () => {
+
+var[value,setvalue] = React.useState([])
+useEffect(()=>{
+  axios.get("http://localhost:5555/view/donor?status=pending").then((res)=>{setvalue(res.data)})
+},[])
+
   const { register, handleSubmit } = useForm();
 
   var [open, setopen] = React.useState(false);
@@ -46,11 +55,16 @@ const UserView = () => {
     ) {
       setopen1(true);
     } else {
-      await axios
-        .post("http://localhost:5555/create/request", data)
-        .then((res) => {
-          alert(res.data);
-        });
+      var reqtype = data.requestType;
+      data.status = "pending";
+      if(reqtype == "Donate")
+      {
+          insertdonor(data)
+      }
+      else if(reqtype == "Receive")
+      {
+          insertreceiver(data)
+      }
     }
   }
 
@@ -61,31 +75,63 @@ const UserView = () => {
 
   return (
     <div>
+      <Box sx={{
+        backgroundImage: `url(https://i.ibb.co/VTMWnkL/image.png)`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat"
+        }}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" sx={{backgroundColor:"transparent"}}>
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            ></IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              WELCOME
+            <Typography component="div" fontSize={"30px"} sx={{ flexGrow: 1, textAlign:"center",color:"black"}}>
+              Meet the Guardians
             </Typography>
-            <Button color="inherit" onClick={() => setopen(true)}>
+            <Button sx={{color:"black",fontSize:"17px",fontWeight:"bold"}} onClick={() => setopen(true)}>
               Request
             </Button>
-            <Button color="inherit">Logout</Button>
+            <Button sx={{color:"black",fontSize:"17px",fontWeight:"bold"}} >Logout</Button>
           </Toolbar>
         </AppBar>
       </Box>
 
+
+
+      <p style={{fontSize:"20px",textAlign:"center"}}>A hub of hope where an extensive network of compassionate individuals awaits, ready to lend a helping hand through the gift of blood. 
+        With an abundance of available blood donors, we strive to ensure timely and vital support for those in need.
+        Our platform boasts a diverse community of donors, representing various blood types and Rh factors. 
+        This rich diversity enhances the chances of finding a compatible match for patients from all walks of life, promoting inclusivity and increased access to 
+        life-saving transfusions.</p>
+
+      <Stack direction={"row"}  flexWrap={"wrap"} alignItems={"center"}>
+            {
+              value.map((data,index)=>{
+                return <Card sx={{
+                  width: "23%",
+                  height: "%",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  marginTop: "20px",
+                  backgroundColor: "lightyellow",
+                  backgroundImage: `url(https://i.ibb.co/5rX9nfq/old-grunge-background-196038-21223.jpg)`,
+                  backgroundSize: "100% 100%",
+                }}>
+                  <CardContent>
+                  <Typography textAlign={"center"} fontSize={"20px"} >Name: {data.name}</Typography>
+                  <Typography textAlign={"center"} fontSize={"20px"}>Age: {data.age}</Typography>
+                  <Typography textAlign={"center"} fontSize={"20px"}>Blood Type: {data.bloodType}</Typography>
+                  <Typography textAlign={"center"} fontSize={"20px"}>Mail: {data.email}</Typography>
+                  <Typography textAlign={"center"} fontSize={"20px"}>Phone: {data.phone}</Typography>
+                  
+                  </CardContent>
+                </Card>
+              })
+            }
+        </Stack>
+
       <Dialog
         open={open}
         onClose={close}
-        sx={{ height: "100%", width: "100%" }}
+        sx={{ height: "100%", width: "100%"}}
       >
         <DialogTitle>Submit Request Form</DialogTitle>
         <Container>
@@ -215,6 +261,11 @@ const UserView = () => {
           Fill necessary fields to continue!!
         </Alert>
       </Snackbar>
+
+      <Box width={"100%"} height={"300px"} >
+
+      </Box>
+      </Box>
     </div>
   );
 };

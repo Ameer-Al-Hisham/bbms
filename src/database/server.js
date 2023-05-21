@@ -16,13 +16,13 @@ app.get("/", (req, res) => {
 app.post("/create/donor", (req, res) => {
   var data = new infof.donorInfo(req.body);
   data.save();
-  res.send("donor created");
+  res.send("donor request submitted");
 });
 
 app.post("/create/receiver", (req, res) => {
   var data = new infof.receiverInfo(req.body);
   data.save();
-  res.send("user updated");
+  res.send("receiver request submitted");
 });
 
 app.post("/create/request", (req, res) => {
@@ -38,8 +38,15 @@ app.post("/create/signup", (req, res) => {
 });
 
 app.get("/view/donor", async (req, res) => {
-  var result = await infof.donorInfo.find();
-  res.send(result);
+  var result = await infof.donorInfo.find({status:req.query.status});
+  if(String(result) == "")
+  {
+    res.send("Empty")
+  }
+  else
+  {
+    res.send(result);
+  }
 });
 
 app.get("/view/user",async (req,res)=>{
