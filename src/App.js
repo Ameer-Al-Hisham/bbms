@@ -5,7 +5,6 @@ import "./App.css";
 import Signup from "./components/Signup";
 import UserView from "./components/Userview";
 
-
 function App() {
   return (
     <div className="App">
