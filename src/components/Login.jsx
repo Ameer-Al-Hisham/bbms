@@ -41,6 +41,7 @@ const Login = () => {
       alert("login successful");
       window.location = "http://localhost:3000/adminview";
     }
+    else{
     await axios
       .get(`http://localhost:5555/view/user?mail=${data.email}`)
       .then((res) => {
@@ -62,7 +63,7 @@ const Login = () => {
           }
         }
       });
-  }
+  }}
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>

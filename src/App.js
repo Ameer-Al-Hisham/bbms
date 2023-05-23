@@ -3,7 +3,8 @@ import Login from "./components/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Signup from "./components/Signup";
-import UserView from "./components/Userview";
+import Userview from "./components/Userview";
+import Adminview from "./components/Adminview";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/userview" element={<UserView />}></Route>
+          <Route path="/userview" element={<Userview />}></Route>
+          <Route path="/adminview" element={<Adminview />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

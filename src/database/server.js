@@ -41,7 +41,7 @@ app.get("/view/donor", async (req, res) => {
   var result = await infof.donorInfo.find({status:req.query.status});
   if(String(result) == "")
   {
-    res.send("Empty")
+    res.send([])
   }
   else
   {
