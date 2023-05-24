@@ -57,6 +57,11 @@ app.get("/view/user",async (req,res)=>{
   else
       {res.send({email:objres[0].email,password:objres[0].password})}
 });
+
+app.get("/delete", async(req, res) => {
+  await infof.donorInfo.findOneAndDelete({email:req.query.email});
+  res.send("Deleted SuccessFully")
+});
 //Setting port number
 app.listen(5555, ()=>{
     console.log("Server is running in port 5555");

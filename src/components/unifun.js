@@ -12,7 +12,12 @@ async function insertreceiver(data)
 
 async function getdonor()
 {
-    await axios.get(`http://localhost:5555/view/donor?`).then((res)=>{console.log(res.data)});
+    await axios.get(`http://localhost:5555/view/donor`).then((res)=>{console.log(res.data)});
 }
 
-export{insertdonor,insertreceiver,getdonor}
+async function deletedonor(data)
+{
+    await axios.get(`http://localhost:5555/delete?email=${data}`).then((res)=>{alert(res.data)});
+}
+
+export{insertdonor,insertreceiver,getdonor,deletedonor}
