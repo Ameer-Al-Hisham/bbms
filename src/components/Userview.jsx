@@ -21,7 +21,6 @@ import Snackbar from "@mui/material/Snackbar";
 import axios from "axios";
 import { insertdonor, insertreceiver } from "./unifun";
 
-<<<<<<< Updated upstream
 const UserView = () => {
   var [value, setvalue] = React.useState([]);
   useEffect(() => {
@@ -29,14 +28,6 @@ const UserView = () => {
       setvalue(res.data);
     });
   }, []);
-=======
-const Userview = () => {
-
-var[value,setvalue] = React.useState([])
-useEffect(()=>{
-  axios.get("http://localhost:5555/view/donor?status=approved").then((res)=>{setvalue(res.data)})
-},[])
->>>>>>> Stashed changes
 
   const { register, handleSubmit } = useForm();
 
@@ -295,17 +286,13 @@ useEffect(()=>{
             Fill necessary fields to continue!!
           </Alert>
         </Snackbar>
-
-<<<<<<< Updated upstream
-        <Box width={"100%"} height={"300px"}></Box>
-=======
       <Box width={"100%"} height={"800px"} >
 
       </Box>
->>>>>>> Stashed changes
+
       </Box>
     </div>
   );
 };
 
-export default Userview;
+export default UserView;
