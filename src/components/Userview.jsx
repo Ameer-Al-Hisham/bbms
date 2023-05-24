@@ -24,7 +24,7 @@ import { insertdonor, insertreceiver } from "./unifun";
 const UserView = () => {
   var [value, setvalue] = React.useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5555/view/donor?status=pending").then((res) => {
+    axios.get("http://localhost:5555/view/donor?status=approved").then((res) => {
       setvalue(res.data);
     });
   }, []);
