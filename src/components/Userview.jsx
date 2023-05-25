@@ -20,6 +20,7 @@ import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import axios from "axios";
 import { insertdonor, insertreceiver } from "./unifun";
+import { Link } from "react-router-dom";
 
 const UserView = () => {
   var [value, setvalue] = React.useState([]);
@@ -98,11 +99,13 @@ const UserView = () => {
               >
                 Request
               </Button>
-              <Button
-                sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
-              >
-                Logout
-              </Button>
+              <Link to={"/login"}>
+                <Button
+                  sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
+                >
+                  Logout
+                </Button>
+              </Link>
             </Toolbar>
           </AppBar>
         </Box>
