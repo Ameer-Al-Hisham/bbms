@@ -24,9 +24,11 @@ import { insertdonor, insertreceiver } from "./unifun";
 const UserView = () => {
   var [value, setvalue] = React.useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5555/view/donor?status=approved").then((res) => {
-      setvalue(res.data);
-    });
+    axios
+      .get("http://localhost:5555/view/donor?status=approved")
+      .then((res) => {
+        setvalue(res.data);
+      });
   }, []);
 
   const { register, handleSubmit } = useForm();
@@ -58,9 +60,9 @@ const UserView = () => {
     } else {
       var reqtype = data.requestType;
       data.status = "pending";
-      if (reqtype == "Donate") {
+      if (reqtype === "Donate") {
         insertdonor(data);
-      } else if (reqtype == "Receive") {
+      } else if (reqtype === "Receive") {
         insertreceiver(data);
       }
     }
@@ -286,10 +288,7 @@ const UserView = () => {
             Fill necessary fields to continue!!
           </Alert>
         </Snackbar>
-      <Box width={"100%"} height={"800px"} >
-
-      </Box>
-
+        <Box width={"100%"} height={"800px"}></Box>
       </Box>
     </div>
   );

@@ -22,7 +22,7 @@ var receiverSchema = new schema({
   phone: String,
   bloodType: String,
   quantity: Number,
-  status: String
+  status: String,
 });
 
 var requestSchema = new schema({
@@ -33,7 +33,7 @@ var requestSchema = new schema({
   bloodType: String,
   ailments: String,
   quantity: Number,
-  requestType : String
+  requestType: String,
 });
 
 var loginSchema = new schema({

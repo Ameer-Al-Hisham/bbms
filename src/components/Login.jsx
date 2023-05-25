@@ -40,30 +40,30 @@ const Login = () => {
     if (data.email === "superuser@gmail.com" && data.password === "admin123") {
       alert("login successful");
       window.location = "http://localhost:3000/adminview";
-    }
-    else{
-    await axios
-      .get(`http://localhost:5555/view/user?mail=${data.email}`)
-      .then((res) => {
-        var result = res.data;
-        var usermail = data.email;
-        var userpass = data.password;
-        if (data.email === "" || data.password === "") {
-          setopen(true);
-        } else if (result === "NewUser") {
-          setopen1(true);
-        } else {
-          var fetchmail = result.email;
-          var fetchpass = result.password;
-          if (fetchmail === usermail && fetchpass === userpass) {
-            alert("login successfull");
-            window.location = "http://localhost:3000/userview";
+    } else {
+      await axios
+        .get(`http://localhost:5555/view/user?mail=${data.email}`)
+        .then((res) => {
+          var result = res.data;
+          var usermail = data.email;
+          var userpass = data.password;
+          if (data.email === "" || data.password === "") {
+            setopen(true);
+          } else if (result === "NewUser") {
+            setopen1(true);
           } else {
-            setopen2(true);
+            var fetchmail = result.email;
+            var fetchpass = result.password;
+            if (fetchmail === usermail && fetchpass === userpass) {
+              alert("login successfull");
+              window.location = "http://localhost:3000/userview";
+            } else {
+              setopen2(true);
+            }
           }
-        }
-      });
-  }}
+        });
+    }
+  }
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>

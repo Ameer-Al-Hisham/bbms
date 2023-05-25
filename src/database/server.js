@@ -38,31 +38,29 @@ app.post("/create/signup", (req, res) => {
 });
 
 app.get("/view/donor", async (req, res) => {
-  var result = await infof.donorInfo.find({status:req.query.status});
-  if(String(result) == "")
-  {
-    res.send([])
-  }
-  else
-  {
+  var result = await infof.donorInfo.find({ status: req.query.status });
+  if (String(result) == "") {
+    res.send([]);
+  } else {
     res.send(result);
   }
 });
 
-app.get("/view/user",async (req,res)=>{
-  var result = String(await infof.loginInfo.find({email:req.query.mail}));
-  var objres = await infof.loginInfo.find({email:req.query.mail});
-  if (result == "")
-      {res.send("NewUser")}
-  else
-      {res.send({email:objres[0].email,password:objres[0].password})}
+app.get("/view/user", async (req, res) => {
+  var result = String(await infof.loginInfo.find({ email: req.query.mail }));
+  var objres = await infof.loginInfo.find({ email: req.query.mail });
+  if (result == "") {
+    res.send("NewUser");
+  } else {
+    res.send({ email: objres[0].email, password: objres[0].password });
+  }
 });
 
-app.get("/delete", async(req, res) => {
-  await infof.donorInfo.findOneAndDelete({email:req.query.email});
-  res.send("Deleted SuccessFully")
+app.get("/delete", async (req, res) => {
+  await infof.donorInfo.findOneAndDelete({ email: req.query.email });
+  res.send("Deleted SuccessFully");
 });
 //Setting port number
-app.listen(5555, ()=>{
-    console.log("Server is running in port 5555");
+app.listen(5555, () => {
+  console.log("Server is running in port 5555");
 });
