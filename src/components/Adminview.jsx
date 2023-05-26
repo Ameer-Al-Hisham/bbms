@@ -23,10 +23,21 @@ import { insertdonor } from "./unifun";
 import { Link } from "react-router-dom";
 
 const Adminview = () => {
+  var [donorStatus, setStatus] = useState("approved");
+  const donorPending = () => {
+    setStatus("pending");
+  };
+  const donorApproved = () => {
+    setStatus("approved");
+  };
+  const donorRejected = () => {
+    setStatus("rejected");
+  };
+
   var [value, setvalue] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5555/view/donor?status=approved")
+      .get(`http://localhost:5555/view/donor?status=${donorStatus}`)
       .then((res) => {
         setvalue(res.data);
       });
@@ -170,6 +181,46 @@ const Adminview = () => {
                 Logout
               </Button>
             </Link>
+          </Toolbar>
+        </AppBar>
+      </Box>
+
+      <Box
+        sx={{
+          backgroundImage: `url(https://i.ibb.co/VTMWnkL/image.png)`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
+          <Toolbar>
+            <Typography
+              component="div"
+              fontSize={"30px"}
+              sx={{ flexGrow: 1, textAlign: "left", color: "black" }}
+            >
+              Donor List
+            </Typography>
+            <Button
+              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
+              onClick={donorPending}
+            >
+              Pending
+            </Button>
+
+            <Button
+              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
+              onClick={donorApproved}
+            >
+              Approved
+            </Button>
+
+            <Button
+              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
+              onClick={donorRejected}
+            >
+              Rejected
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>
