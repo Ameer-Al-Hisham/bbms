@@ -14,7 +14,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
@@ -23,7 +23,7 @@ import { insertdonor } from "./unifun";
 import { Link } from "react-router-dom";
 
 const Adminview = () => {
-  var [value, setvalue] = React.useState([]);
+  var [value, setvalue] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5555/view/donor?status=approved")
@@ -31,6 +31,15 @@ const Adminview = () => {
         setvalue(res.data);
       });
   }, []);
+
+  var [open1, setopen1] = useState(false);
+  const close1 = () => {
+    setopen1(false);
+  };
+  var [open2, setopen2] = useState(false);
+  const close2 = () => {
+    setopen2(false);
+  };
 
   const { register, handleSubmit } = useForm();
   async function admininsert(data) {
@@ -49,42 +58,88 @@ const Adminview = () => {
     }
   }
 
-  var [open, setopen] = React.useState(false);
+  var [open, setopen] = useState(false);
   const close = () => {
     setopen(false);
   };
 
-  var [delopen, delsetopen] = React.useState(false);
+  var [delopen, delsetopen] = useState(false);
   const delclose = () => {
     delsetopen(false);
   };
 
-  var [open1, setopen1] = React.useState(false);
-  const close1 = () => {
-    setopen1(false);
+  var [emailCheckOpen, setEmailCheckOpen] = useState(false);
+  const emailCheckClose = () => {
+    setEmailCheckOpen(false);
   };
 
-  var [delval, setdelval] = React.useState("");
+  var [updateOpen, setUpdateOpen] = useState(false);
+  const updateClose = () => {
+    setUpdateOpen(false);
+  };
+
+  var [delval, setdelval] = useState("");
+  var [updateCheckEmail, setUpdateCheckEmail] = useState("");
 
   async function admindelete(data) {
-    if (data.email === "") {
+    if (data === "") {
       setopen1(true);
     } else {
       await axios
-        .get(`http://localhost:5555/delete?email=${data}`)
-        .then((res) => {
-          alert(res.data);
+        .get(`http://localhost:5555/check/donor?email=${data}`)
+        .then(async (res) => {
+          try {
+            if (res.data[0].email === data) {
+              await axios
+                .get(`http://localhost:5555/delete?email=${data}`)
+                .then((res) => {
+                  if (res.data === null) {
+                    setopen2(true);
+                  } else {
+                    alert(res.data);
+                  }
+                });
+            }
+          } catch (error) {
+            setopen2(true);
+          }
         });
     }
   }
 
+  const checkEmail = async (data) => {
+    if (data === "") {
+      setopen1(true);
+    } else {
+      await axios
+        .get(`http://localhost:5555/check/donor?email=${data}`)
+        .then(async (res) => {
+          try {
+            if (res.data[0].email === data) {
+              setdelval(data);
+              setUpdateOpen(true);
+            }
+          } catch (error) {
+            setopen2(true);
+          }
+        });
+    }
+  };
+
   return (
     <div>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box
+        sx={{
+          backgroundImage: `url(https://i.ibb.co/VTMWnkL/image.png)`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
           <Toolbar>
             <Button
               sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
+              onClick={() => setEmailCheckOpen(true)}
             >
               Update
             </Button>
@@ -123,6 +178,7 @@ const Adminview = () => {
         {value.map((data, index) => {
           return (
             <Card
+              key={index}
               sx={{
                 width: "23%",
                 height: "%",
@@ -169,7 +225,7 @@ const Adminview = () => {
                 required
                 sx={{ marginTop: "2%", width: "300px" }}
                 variant="outlined"
-                label="Name"
+                label="name"
                 size="normal"
                 {...register("name")}
               />
@@ -290,9 +346,152 @@ const Adminview = () => {
         </Container>
       </Dialog>
 
+      <Dialog
+        open={emailCheckOpen}
+        onClose={emailCheckClose}
+        sx={{ height: "100%", width: "100%" }}
+      >
+        <DialogTitle>Update Donor</DialogTitle>
+        <Container>
+          <TextField
+            required
+            sx={{ marginTop: "2%", width: "300px" }}
+            variant="outlined"
+            label="Email"
+            size="normal"
+            value={updateCheckEmail}
+            onChange={(e) => {
+              setUpdateCheckEmail(e.target.value);
+            }}
+          />
+          <Box sx={{ width: "100%", height: "80px" }}>
+            <Button
+              variant="contained"
+              sx={{
+                marginTop: "2%",
+                marginLeft: "28%",
+                width: "50%",
+                height: "60%",
+              }}
+              onClick={() => {
+                checkEmail(updateCheckEmail);
+              }}
+            >
+              Update
+            </Button>
+          </Box>
+        </Container>
+      </Dialog>
+
+      <Dialog
+        open={updateOpen}
+        onClose={updateClose}
+        sx={{ height: "100%", width: "100%" }}
+      >
+        <DialogTitle>Update Donor</DialogTitle>
+        <Container>
+          <List>
+            <ListItem>
+              <TextField
+                required
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Name"
+                size="normal"
+                {...register("name")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <TextField
+                required
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Age"
+                size="normal"
+                {...register("age")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <TextField
+                required
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Email ID"
+                size="normal"
+                type="email"
+                {...register("email")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <TextField
+                required
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Phone No"
+                size="normal"
+                {...register("phone")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <TextField
+                required
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Blood type"
+                size="normal"
+                {...register("bloodType")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <TextField
+                sx={{ marginTop: "2%", width: "300px" }}
+                variant="outlined"
+                label="Ailments"
+                size="normal"
+                {...register("ailments")}
+              />
+            </ListItem>
+
+            <ListItem>
+              <Button
+                variant="contained"
+                sx={{ marginTop: "2%", marginLeft: "28%", width: "50%" }}
+                onClick={() => {
+                  admindelete(delval);
+                  handleSubmit(admininsert);
+                  console.log(delval);
+                }}
+              >
+                Submit
+              </Button>
+            </ListItem>
+
+            <ListItem>
+              <Button
+                variant="contained"
+                sx={{ marginTop: "2%", marginLeft: "28%", width: "50%" }}
+                onClick={updateClose}
+              >
+                Back
+              </Button>
+            </ListItem>
+          </List>
+        </Container>
+      </Dialog>
+
       <Snackbar open={open1} autoHideDuration={6000} onClose={close1}>
         <Alert severity="warning" sx={{ width: "100%" }}>
           Fill necessary fields to continue!!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={open2} autoHideDuration={6000} onClose={close2}>
+        <Alert severity="warning" sx={{ width: "100%" }}>
+          Such an entry does not exist!
         </Alert>
       </Snackbar>
     </div>

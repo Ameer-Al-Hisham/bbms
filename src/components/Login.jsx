@@ -38,7 +38,7 @@ const Login = () => {
 
   async function verifylogin(data) {
     if (data.email === "superuser@gmail.com" && data.password === "admin123") {
-      alert("login successful");
+      alert("Logged in as ADMIN");
       window.location = "http://localhost:3000/adminview";
     } else {
       await axios

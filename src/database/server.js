@@ -46,6 +46,15 @@ app.get("/view/donor", async (req, res) => {
   }
 });
 
+app.get("/check/donor", async (req, res) => {
+  var result = await infof.donorInfo.find({ email: req.query.email });
+  if (String(result) == "") {
+    res.send(null);
+  } else {
+    res.send(result);
+  }
+});
+
 app.get("/view/user", async (req, res) => {
   var result = String(await infof.loginInfo.find({ email: req.query.mail }));
   var objres = await infof.loginInfo.find({ email: req.query.mail });
@@ -57,7 +66,10 @@ app.get("/view/user", async (req, res) => {
 });
 
 app.get("/delete", async (req, res) => {
-  await infof.donorInfo.findOneAndDelete({ email: req.query.email });
+  console.log(
+    await infof.donorInfo.findOneAndDelete({ email: req.query.email })
+  );
+
   res.send("Deleted SuccessFully");
 });
 //Setting port number
