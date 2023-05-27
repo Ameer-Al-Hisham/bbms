@@ -46,6 +46,17 @@ app.get("/view/donor", async (req, res) => {
   }
 });
 
+app.get("/get/donor", async (req, res) => {
+  var result = await infof.donorInfo.find({ email: req.query.email });
+  if (String(result) == "") {
+    res.send([]);
+    console.log(result)
+  } else {
+    res.send(result);
+    console.log(result)
+  }
+});
+
 app.get("/check/donor", async (req, res) => {
   var result = await infof.donorInfo.find({ email: req.query.email });
   if (String(result) == "") {
@@ -69,6 +80,8 @@ app.get("/delete", async (req, res) => {
   console.log(
     await infof.donorInfo.findOneAndDelete({ email: req.query.email })
   );
+
+
 
   res.send("Deleted SuccessFully");
 });

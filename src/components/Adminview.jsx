@@ -24,6 +24,11 @@ import { Link } from "react-router-dom";
 
 const Adminview = () => {
   var [donorStatus, setStatus] = useState("approved");
+  var [nameget, setnameget] = useState("");
+  var [ageget, setageget] = useState("");
+  var [emailget, setemailget] = useState("");
+  var [bloodget, setbloodget] = useState("");
+  var [phoneget, setphoneget] = useState("");
   const donorPending = () => {
     setStatus("pending");
   };
@@ -33,6 +38,19 @@ const Adminview = () => {
   const donorRejected = () => {
     setStatus("rejected");
   };
+
+
+  async function updateadminget(data)
+  {
+    await axios.get(`http://localhost:5555/get/donor?email=${data}`).then((res)=>{
+      setnameget(res.name)
+      setageget(res.age)
+      setemailget(res.email)
+      setphoneget(res.phone)
+      setbloodget(res.bloodType)
+      setUpdateOpen(true);
+    })
+  }
 
   var [value, setvalue] = useState([]);
   useEffect(() => {
@@ -127,8 +145,14 @@ const Adminview = () => {
         .then(async (res) => {
           try {
             if (res.data[0].email === data) {
-              setdelval(data);
+              setnameget(res.data[0].name)
+              setageget(res.data[0].age)
+              setemailget(res.data[0].email)
+              setphoneget(res.data[0].phone)
+              setbloodget(res.data[0].bloodType)
               setUpdateOpen(true);
+              console.log(nameget,ageget,emailget,phoneget,bloodget)
+              console.log(res)
             }
           } catch (error) {
             setopen2(true);
@@ -150,17 +174,12 @@ const Adminview = () => {
           <Toolbar>
             <Button
               sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
-              onClick={() => setEmailCheckOpen(true)}
-            >
-              Update
-            </Button>
-
-            <Button
-              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
               onClick={() => delsetopen(true)}
             >
-              Delete
+              Update/delete
             </Button>
+
+
             <Typography
               component="div"
               fontSize={"30px"}
@@ -185,45 +204,7 @@ const Adminview = () => {
         </AppBar>
       </Box>
 
-      <Box
-        sx={{
-          backgroundImage: `url(https://i.ibb.co/VTMWnkL/image.png)`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
-          <Toolbar>
-            <Typography
-              component="div"
-              fontSize={"30px"}
-              sx={{ flexGrow: 1, textAlign: "left", color: "black" }}
-            >
-              Donor List
-            </Typography>
-            <Button
-              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
-              onClick={donorPending}
-            >
-              Pending
-            </Button>
 
-            <Button
-              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
-              onClick={donorApproved}
-            >
-              Approved
-            </Button>
-
-            <Button
-              sx={{ color: "black", fontSize: "17px", fontWeight: "bold" }}
-              onClick={donorRejected}
-            >
-              Rejected
-            </Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
 
       <Stack direction={"row"} flexWrap={"wrap"} alignItems={"center"}>
         {value.map((data, index) => {
@@ -365,7 +346,7 @@ const Adminview = () => {
         onClose={delclose}
         sx={{ height: "100%", width: "100%" }}
       >
-        <DialogTitle>Delete Donor</DialogTitle>
+        <DialogTitle>Update/delete Donor</DialogTitle>
         <Container>
           <TextField
             required
@@ -376,6 +357,7 @@ const Adminview = () => {
             value={delval}
             onChange={(e) => {
               setdelval(e.target.value);
+              setUpdateCheckEmail(e.target.value)
             }}
           />
           <Box sx={{ width: "100%", height: "80px" }}>
@@ -393,29 +375,6 @@ const Adminview = () => {
             >
               Delete
             </Button>
-          </Box>
-        </Container>
-      </Dialog>
-
-      <Dialog
-        open={emailCheckOpen}
-        onClose={emailCheckClose}
-        sx={{ height: "100%", width: "100%" }}
-      >
-        <DialogTitle>Update Donor</DialogTitle>
-        <Container>
-          <TextField
-            required
-            sx={{ marginTop: "2%", width: "300px" }}
-            variant="outlined"
-            label="Email"
-            size="normal"
-            value={updateCheckEmail}
-            onChange={(e) => {
-              setUpdateCheckEmail(e.target.value);
-            }}
-          />
-          <Box sx={{ width: "100%", height: "80px" }}>
             <Button
               variant="contained"
               sx={{
@@ -426,6 +385,7 @@ const Adminview = () => {
               }}
               onClick={() => {
                 checkEmail(updateCheckEmail);
+                
               }}
             >
               Update
@@ -433,6 +393,8 @@ const Adminview = () => {
           </Box>
         </Container>
       </Dialog>
+
+
 
       <Dialog
         open={updateOpen}
@@ -449,7 +411,11 @@ const Adminview = () => {
                 variant="outlined"
                 label="Name"
                 size="normal"
-                {...register("name")}
+                defaultValue={nameget}
+                value={nameget}
+                onChange={(e) => {
+                  setnameget(e.target.value);
+                }}
               />
             </ListItem>
 
@@ -460,7 +426,11 @@ const Adminview = () => {
                 variant="outlined"
                 label="Age"
                 size="normal"
-                {...register("age")}
+                defaultValue={ageget}
+                value={ageget}
+                onChange={(e) => {
+                  setageget(e.target.value);
+                }}
               />
             </ListItem>
 
@@ -472,7 +442,11 @@ const Adminview = () => {
                 label="Email ID"
                 size="normal"
                 type="email"
-                {...register("email")}
+                defaultValue={emailget}
+                value={emailget}
+                onChange={(e) => {
+                  setemailget(e.target.value);
+                }}
               />
             </ListItem>
 
@@ -483,7 +457,11 @@ const Adminview = () => {
                 variant="outlined"
                 label="Phone No"
                 size="normal"
-                {...register("phone")}
+                defaultValue={phoneget}
+                value={phoneget}
+                onChange={(e) => {
+                 setphoneget(e.target.value);
+                }}
               />
             </ListItem>
 
@@ -494,7 +472,11 @@ const Adminview = () => {
                 variant="outlined"
                 label="Blood type"
                 size="normal"
-                {...register("bloodType")}
+                defaultValue={bloodget}
+                value={bloodget}
+                onChange={(e) => {
+                  setbloodget(e.target.value);
+                }}
               />
             </ListItem>
 
@@ -504,7 +486,7 @@ const Adminview = () => {
                 variant="outlined"
                 label="Ailments"
                 size="normal"
-                {...register("ailments")}
+                
               />
             </ListItem>
 
@@ -512,11 +494,7 @@ const Adminview = () => {
               <Button
                 variant="contained"
                 sx={{ marginTop: "2%", marginLeft: "28%", width: "50%" }}
-                onClick={() => {
-                  admindelete(delval);
-                  handleSubmit(admininsert);
-                  console.log(delval);
-                }}
+                onClick={() => { }}
               >
                 Submit
               </Button>
